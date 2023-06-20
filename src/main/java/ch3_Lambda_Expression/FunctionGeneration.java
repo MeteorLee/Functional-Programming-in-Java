@@ -1,6 +1,6 @@
-package practice;
+package ch3_Lambda_Expression;
 
-import practice.util.Adder;
+import ch3_Lambda_Expression.util.Adder;
 
 import java.util.function.Function;
 

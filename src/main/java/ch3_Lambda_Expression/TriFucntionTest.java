@@ -1,6 +1,6 @@
-package practice;
+package ch3_Lambda_Expression;
 
-import practice.util.TriFunction;
+import ch3_Lambda_Expression.util.TriFunction;
 
 public class TriFucntionTest {
     public static void main(String[] args) {

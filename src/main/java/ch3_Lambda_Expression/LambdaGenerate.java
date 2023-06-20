@@ -1,4 +1,4 @@
-package practice;
+package ch3_Lambda_Expression;
 
 import java.util.function.Function;
 
