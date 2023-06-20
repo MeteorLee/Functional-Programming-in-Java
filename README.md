@@ -105,3 +105,79 @@ x -> x +10;
 ```
 
 3개부터는 사용자 직접 만들어야함
+
+## Functional Interface
+
+#### Supplier
+- 입력을 받지 않고 리턴만 하는 함수
+
+```java
+@FunctionalInterface
+public interface Supplier<T> {
+
+    T get();
+}
+```
+
+#### Consumer, BiConsumer
+- 입력은 받고 리턴은 하지 않는 함수
+```java
+@FunctionalInterface
+public interface Consumer<T> {
+
+    void accept(T t);
+}
+
+```
+
+```java
+@FunctionalInterface
+public interface BiConsumer<T, U> {
+
+    void accept(T t, U u);
+}
+
+```
+
+#### Predicate
+
+- 입력을 받아 boolean을 리턴하는 함수로 입력을 받아 참, 거짓 구분 시 사용
+
+```java
+@FunctionalInterface
+public interface Predicate<T> {
+    
+    boolean test(T t);
+
+    default Predicate<T> and(Predicate<? super T> other) {
+        Objects.requireNonNull(other);
+        return (t) -> test(t) && other.test(t);
+    }
+
+    default Predicate<T> negate() {
+        return (t) -> !test(t);
+    }
+
+    default Predicate<T> or(Predicate<? super T> other) {
+        Objects.requireNonNull(other);
+        return (t) -> test(t) || other.test(t);
+    }
+}
+
+```
+
+#### Comparator
+
+- 비교를 위한 인터페이스로 음수, 0, 양수로 구분함
+
+```java
+@FunctionalInterface
+public interface Comparator<T> {
+    
+    int compare(T o1, T o2);
+}
+```
+
+- 음수면 o1 < o2
+- 0면 o1 = o2
+- 양수면 o1 > o2
