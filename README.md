@@ -181,3 +181,45 @@ public interface Comparator<T> {
 - 음수면 o1 < o2
 - 0면 o1 = o2
 - 양수면 o1 > o2
+
+## Method Reference
+
+- 기존에 이미 선언되어있는 메서드를 지정하고 싶을 때
+- :: 오퍼레이터 사용
+- 생략이 많기 때문에 사용할 메서드의 매개변수의 타입과 리턴 타입을 미리 숙지해야함
+
+### 4가지 케이스
+
+- 클래스의 static method를 지정할 때
+  - ClassName::staticMethodName
+- 선언된 객체의 instance method를 지정할 때
+  - objectName::instanceMethodName
+- 객체의 instatnce method를 지정할 때
+  - ClassName::instanceMethodName
+- 클래스의 constructor를 지정할 때
+  - ClassName::new
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
