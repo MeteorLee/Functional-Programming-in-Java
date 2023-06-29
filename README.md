@@ -272,6 +272,84 @@ Stram<T> distinct();
         ? extends Stream<? extends R>> mapper);
 ```
 
+## Optional
+
+### NPE - NullPointerException
+
+- Null 상태인 오브젝트를 레퍼런스할 때 발생
+- Runtime error이기 때문에 실행 전 까지는 발생 여부를 알기 쉽지 않음
+
+### Optional
+
+- Null일수도, 아닐 수도 있는 오브젝트를 담은 상자
+```java
+java.util.Optional<T>
+
+Optional<String> maybeString = Optional.of("Hello world");
+String string = maybeString.get();
+```
+#### 만드는 법
+
+```java
+public static <T> Optional<T> of(T value)
+public static <T> Optional<T> empty()
+public static <T> Optional<T> ofNullable(T value)
+```
+
+- of : Null이 아닌 오브젝트를 이용해 Optional을 만들 때
+- Empty : 빈 Optional을 만들 때
+- ofNullable : Null인지 아닌지 알 지 못하는 오브젝트로 Optional을 만들 때
+
+#### 안에 있는 값을 확인하고 꺼내는 방법
+
+```java
+public boolean isPresent()
+public T get()
+public T orElse(T other)
+public T orElseGet(Supplier<? extends T> supplier)
+public <X extends Throwable> T orElseThrow(
+        Supplier<? extends X> exceptionSupplier) throws X
+```
+
+- isPresent : 안의 오브젝트가 null인지 아닌지 체크 Null이 아닐 시 true
+- get : Optional 안의 값을 추출. Null이라면 에러
+- orElse : Optional이 null이 아니라면 Optional 안의 값을, null이라면 other로 공급된 값을 리턴
+- orElseGet : Optional이 null이 아니라면 Optional 안의 값을, null이라면 supplier로 공급되는 값을 리턴
+- orElseThrow : Optional이 null이 아니라면 Optional 안의 값을, null이라면 exceptionSupplier로 공급되는 exception을 던짐
+
+
+#### Optional 응용
+
+```java
+public void ifPresent(Consumer<? super T> action)
+public <U> Optional<U> map(Function<? super T, ? extends U> mapper)
+public <U> Optional<U> flatMap(
+        Function<? super t, ? extends Optional<? extends U>> mapper)
+```
+
+- ifPresent : Optional이 null이 아니라면 action을 실행
+- map : Optional이 null이 아니라면 mapper를 정용
+- flatMap - mapper의 리턴 값이 또 다른 Optional이라면 한 단계의 Optional이 되도록 납작하게 해줌
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
