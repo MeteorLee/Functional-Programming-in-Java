@@ -199,18 +199,78 @@ public interface Comparator<T> {
 - 클래스의 constructor를 지정할 때
   - ClassName::new
 
+## Stream
 
+- 데이터의 흐름
+- 컬렉션(Collection) 형태로 구성된 데이터를 람다를 이용해 간결하고 직관적으로 프로세스하게 해줌
+- For, While 등을 이용하던 기존 loop을 대체
+- 손쉽게 병렬 처리를 할 수 있게 해줌
 
+### Filter
 
+- 만족하는 데이터만 걸러내는데 사용
+- Predicate에 true를 반환하는 데이터만 존재하는 stream을 리턴
+```java
+Stream<T> filter(Predicate<? super T> predicate);
+```
 
+### Map
 
+- 데이터를 변형하는데 사용
+- 데이터에 해당 함수가 적용된 결과물을 제공하는 stream을 리턴
 
+```java
+<R> Stream<R> map(Function<? super T, ? extends R> mapper);
+```
 
+### Stream의 구성요소
 
+Stream은 3가지의 구성요소로 이루어져 있음
 
+1. Source (소스)
 
+컬렉션, 배열
 
+2. Intermediate Operations (중간 처리)
 
+0개 이상의 filter, map 등의 중간 처리
+
+3. Terminal Operation (종결 처리)
+
+Collect, reduce 등
+
+- 여러가지 중간 처리를 이어 붙이는 것이 가능
+
+### Sorted 데이터 정렬
+
+- 데이터가 순서대로 정렬된 stream을 리턴
+- 데이터의 종류에 따라 Comparator가 필요할 수 있음
+
+```java
+Stream<T> sorted();
+
+Stream<T> sorted(Comparator<? super T> comparator);
+```
+
+### Distince 중복 제거
+
+- 중복되는 데이터가 제거된 stream을 리턴
+
+```java
+Stram<T> distinct();
+```
+
+### FlatMap
+
+- 스트림의 스트림을 납작하게 만듬
+- Map + Flatten
+- 데이터에 함수를 적용한 후 중첩된 stream을 연결하여 하나의 stream으로 리턴
+
+```java
+<R> Stream<R> flatMap(
+        Function<? super T, 
+        ? extends Stream<? extends R>> mapper);
+```
 
 
 
