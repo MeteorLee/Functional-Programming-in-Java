@@ -531,6 +531,80 @@ Stream<Integer> parallelStream2 = numbers.stream().parallel();
 
 
 
+## 함수형 프로그래밍의 응용
+
+### Scope Closure Curry
+
+```java
+public static Supplier<String> getStringSupplier() {
+    String hello = "Hello";
+    Supplier<String> supllier = () -> {
+        String world = "world";
+        return hello + world;
+    };
+    return supplier;
+}
+```
+
+#### Scope
+
+- Scope (스코프/유효범위) : 변수에 접근할 수 있는 범위
+  - 함수안에 함수가 있을 때 내부 함수에서 외부 함수에 있는 변수에 접근이 가능하다(lexical scope). 그 반대는 불가능하다.
+
+#### Closure
+
+- Closure : 내부 함수가 존재하는 한 내부 함수가 사용한 외부 함수의 변수들 역시 계속 존재한다. 이렇게
+lexical scope를 포함하는 함수를 closure라 한다.
+- 이 때 내부 함수가 사용한 외부 함수의 변수들은 내부 함수 선언 당시로부터 변할 수 없기 때문에 final로 선언되지
+않더라도 암묵적으로 final로 취급된다.
+
+
+#### Curry
+
+- 여러 개의 매개변수를 받는 함수를 중첩된 여러 개의 함수로 쪼개어 매개 변수를 한 번에 받지 않고 여러 단계에 걸쳐
+나눠 받을 수 있게 하는 기술
+- Closure의 응용
+```java
+BiFunction<Integer, Integer, Integer> add = (x, y) -> x + y;
+=>
+Function<Integer, Function<Integer, Integer>> add = x -> y -> x + y;
+```
+
+### Lazy Evaluation
+
+- Lambda의 계산은 그 결과값이 필요할 때가 되어서야 계산된다.
+- 이를 이용하여 불필요한 계산을 줄이거나 해당 코드의 실행 순서를 의도적으로 미룰 수 있다.
+
+
+
+### Function Composition (함수 합성)
+
+- 여러 개의 함수를 합쳐 하나의 새로운 함수로 만드는 것
+
+```java
+java.util.function.Function
+
+<V> Function<V, R> compose(Function<? super V, ? extends T> before)
+<V> Function<T, V> andThen(Function<? super R, ? extends V> after)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
